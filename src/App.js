@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
-import './App.css'
 import FaSpinner from 'react-icons/lib/fa/spinner'
 import GoogleMap from './components/GoogleMap'
+import Marker from './components/Marker'
 import { GOOGLE_MAP_KEY } from './constants/google-map-constants'
+import sampleData from './data/sample'
+
+const data = sampleData.listings
 
 const Spinner = () => {
   return (
@@ -24,17 +26,19 @@ class App extends Component {
     console.log('Boom! We\'re ready!')
   }
   render() {
+    console.log(data)
+    // const options = {}
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React Google Maps</h2>
-        </div>
-        <GoogleMap
-          onReady={this.onReadyApp.bind(this)}
-          googleMapUrl={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_KEY}`}
-          loadingElement={<Spinner />} />
-      </div>
+      <GoogleMap
+        onReady={this.onReadyApp.bind(this)}
+        googleMapUrl={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_KEY}`}
+        loadingElement={<Spinner />}>
+        {data.map(listing => {
+          return (
+            <Marker key={listing.id} label={listing.displayName} position={{lat: listing.latitude, lng: listing.longitude}} />
+          )
+        })}
+      </GoogleMap>
     )
   }
 }
