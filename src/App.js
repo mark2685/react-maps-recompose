@@ -26,7 +26,6 @@ class App extends Component {
     console.log('Boom! We\'re ready!')
   }
   render() {
-    console.log(data)
     // const options = {}
     return (
       <GoogleMap

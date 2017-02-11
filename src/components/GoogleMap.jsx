@@ -43,18 +43,14 @@ class GoogleMap extends Component {
     loading: LOADING_STATE_NONE
   }
 
-  onReady() {
+  loadMap() {
     this.setState({
       loading: LOADING_STATE_LOADED,
       google: window.google
     })
 
-    this.loadMap()
-  }
-
-  loadMap() {
     const { google } = this.state
-    const { mapOptions } = this.props
+    const { mapOptions, onReady } = this.props
 
     const mapRef = this.refs.map
     const node = ReactDOM.findDOMNode(mapRef)
@@ -66,6 +62,10 @@ class GoogleMap extends Component {
     // })
 
     google.maps.event.trigger(this.map, 'ready')
+
+    if (onReady) {
+      onReady()
+    }
 
     this.forceUpdate()
   }
@@ -115,7 +115,7 @@ class GoogleMap extends Component {
         <GoogleMapAsyncLoader
           googleMapUrl={googleMapUrl}
           loadingElement={loadingElement}
-          onReady={this.onReady.bind(this)} />
+          onReady={this.loadMap.bind(this)} />
         )
     }
 
