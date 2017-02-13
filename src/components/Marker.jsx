@@ -39,6 +39,6 @@ export default class Marker extends Component {
   }
 
   render() {
-    return false
+    return null
   }
 }

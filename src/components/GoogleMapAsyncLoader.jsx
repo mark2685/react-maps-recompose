@@ -60,7 +60,7 @@ class GoogleMapAsyncLoader extends Component {
     if (loading !== LOADING_STATE_LOADED) {
       return (this.props.loadingElement)
     } else {
-      return false
+      return null
     }
   }
 }

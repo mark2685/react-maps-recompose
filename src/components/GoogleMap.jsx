@@ -23,7 +23,6 @@ const LOADING_STATE_LOADED = `LOADING_STATE_LOADED`
 
 class GoogleMap extends Component {
   static defaultProps = {
-    title: 'React Google Maps',
     mapOptions: {
       zoom: DEFAULT_ZOOM,
       center: DEFAULT_CENTER
@@ -116,7 +115,7 @@ class GoogleMap extends Component {
           googleMapUrl={googleMapUrl}
           loadingElement={loadingElement}
           onReady={this.loadMap.bind(this)} />
-        )
+      )
     }
 
     return (

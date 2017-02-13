@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FaSpinner from 'react-icons/lib/fa/spinner'
 import GoogleMap from './components/GoogleMap'
+import MarkerClusterer from './components/MarkerClusterer'
 import Marker from './components/Marker'
 import { GOOGLE_MAP_KEY } from './constants/google-map-constants'
 import sampleData from './data/sample'
@@ -25,6 +26,7 @@ class App extends Component {
   onReadyApp() {
     console.log('Boom! We\'re ready!')
   }
+
   render() {
     // const options = {}
     return (
@@ -32,11 +34,15 @@ class App extends Component {
         onReady={this.onReadyApp.bind(this)}
         googleMapUrl={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_KEY}`}
         loadingElement={<Spinner />}>
-        {data.map(listing => {
-          return (
-            <Marker key={listing.id} label={listing.displayName} position={{lat: listing.latitude, lng: listing.longitude}} />
-          )
-        })}
+        <MarkerClusterer>
+          {data.map(listing => {
+            return (
+              <Marker
+                key={listing.id}
+                position={{lat: listing.latitude, lng: listing.longitude}} />
+            )
+          })}
+        </MarkerClusterer>
       </GoogleMap>
     )
   }
