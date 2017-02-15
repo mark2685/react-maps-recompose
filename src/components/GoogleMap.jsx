@@ -21,7 +21,7 @@ const mapStyles = {
 const LOADING_STATE_NONE   = `LOADING_STATE_NONE`
 const LOADING_STATE_LOADED = `LOADING_STATE_LOADED`
 
-class GoogleMap extends Component {
+export default class GoogleMap extends Component {
   static defaultProps = {
     mapOptions: {
       zoom: DEFAULT_ZOOM,
@@ -68,6 +68,21 @@ class GoogleMap extends Component {
 
     this.forceUpdate()
   }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   const { loading:nextLoading } = nextState
+  //   const { loading:prevLoading } = this.state
+  //
+  //   if (prevLoading !== nextLoading && prevLoading !== LOADING_STATE_LOADED) {
+  //     this.renderChildren()
+  //
+  //     return true
+  //   }
+  //
+  //   return false
+  // }
+
+  componentDidUpdate(prevProps, prevState) {}
 
   componentDidMount() {
     const { loading } = this.state
@@ -127,5 +142,3 @@ class GoogleMap extends Component {
     )
   }
 }
-
-export default GoogleMap
