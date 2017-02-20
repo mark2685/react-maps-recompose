@@ -35,8 +35,6 @@ class App extends Component {
   }
 
   onMarkerClick(props, marker, e) {
-    console.log('onMarkerClick', marker)
-
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -61,7 +59,6 @@ class App extends Component {
   }
 
   render() {
-    // const options = {}
     return (
       <GoogleMap
         onReady={this.onReadyApp.bind(this)}

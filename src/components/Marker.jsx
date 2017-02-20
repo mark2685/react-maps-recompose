@@ -1,70 +1,59 @@
-import { default as React, Component, PropTypes } from 'react' // eslint-disable-line no-unused-vars
-import { camelize } from '../utils/String'
-const eventNames = ['click', 'mouseover', 'recenter', 'dragend']
+import { default as React, PropTypes } from 'react' // eslint-disable-line no-unused-vars
+import { default as compose } from 'recompose/compose'
+import { default as onlyUpdateForKeys } from 'recompose/onlyUpdateForKeys'
+import { default as withState } from 'recompose/withState'
+import { default as getContext } from 'recompose/getContext'
+// import { default as createSink } from 'recompose/createSink'
+import { default as renderNothing } from 'recompose/renderNothing'
+import { default as lifecycle } from 'recompose/lifecycle'
 
-class Marker extends Component {
-  renderMarker() {
-    // NOTE: Should this functionality go into the render() method?
-    const { map, google, markerClusterer, label, position } = this.props
+const enhance = compose(
+  withState('marker', 'updateMarker', null),
+  getContext({
+    google: PropTypes.object,
+    map: PropTypes.object,
+  }),
+  onlyUpdateForKeys(['google', 'map']),
+  lifecycle({
+    componentDidMount: function() {
+      console.log('1.componentDidMount', this.props)
 
-    if (!google || !map) {
-      return null
-    }
+      const { google, map, marker, position, updateMarker } = this.props
 
-    const config = { map, position, label }
+      if (marker) {
+        marker.setMap(null)
+      }
 
-    this.marker = new google.maps.Marker(config)
+      const config = { map, position }
 
-    if (markerClusterer) {
-      markerClusterer.addMarker(this.marker)
-    }
+      const freshMarker = new google.maps.Marker(config)
 
-    eventNames.forEach(e => {
-      this.marker.addListener(e, this.handleEvent(e))
-    })
-  }
+      updateMarker(freshMarker)
+    },
+    componentWillUnmount: function() {
 
-  handleEvent(evt) {
-    return (e) => {
-      const eventName = `on${camelize(evt)}`
-      if (this.props[eventName]) {
-        this.props[eventName](this.props, this.marker, e)
+      // TODO: Figure out why the marker is always NULL here, might have to remove 'lifecycle' as it seems buggy.
+
+      const { marker } = this.props
+
+      console.log('2. componentWillUnmount', this)
+
+      if (marker) {
+        console.log('\n\nFOUND!\n\n')
+        // TODO: Remove event listeners here.
+        marker.setMap(null)
       }
     }
-  }
+  }),
+  renderNothing
+)()
 
-  componentDidMount() {
-    this.renderMarker()
-  }
+// const Marker = createSink(({ google, map, marker, updateMarker, position }) => {
+//   const config = { map, position }
+//
+//   const _marker = new google.maps.Marker(config)
+//
+//   updateMarker(_marker)
+// })
 
-  componentDidUpdate(prevProps) {
-    if ((this.props.map !== prevProps.map) ||
-      (this.props.position !== prevProps.position)) {
-        if (this.marker) {
-            this.marker.setMap(null)
-        }
-        this.renderMarker()
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.marker) {
-      // TODO: Remove event listeners here.
-      this.marker.setMap(null)
-    }
-  }
-
-  render() {
-    console.log('Marker.render')
-    return null
-  }
-}
-
-Marker.propTypes = {
-  map: PropTypes.object,
-  position: PropTypes.object.isRequired
-}
-
-eventNames.forEach(evt => Marker.propTypes[evt] = PropTypes.func)
-
-export default Marker
+export default enhance

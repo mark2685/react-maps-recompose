@@ -6,10 +6,13 @@
     "react-scripts": "0.8.5"
   },
   "dependencies": {
+    "lodash": "^4.17.4",
     "marker-clusterer-plus": "^2.1.4",
+    "pubsub-js": "^1.5.4",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-icons": "^2.2.3",
+    "recompose": "^0.22.0",
     "scriptjs": "^2.5.8"
   },
   "scripts": {

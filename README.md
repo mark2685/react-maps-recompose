@@ -1,4 +1,19 @@
-# Rebuild of react-google-map ()
+# Rebuild of react-google-map
+
+## TODO:
+* MarkerWithLabel
+* Custom Controls
+* InfoWindow
+* Marker Events
+* Map Events
+
+## Component Structure
+* <GoogleMap />
+ * isLoading
+  * <LoadScripts />
+  * <Map />
+    * <MapDom /> // never updates after the initial map renders
+    * <MapChildren />
 
 ## Inspiration
 * [google-maps-react (simplest solution)](https://github.com/fullstackreact/google-maps-react)
