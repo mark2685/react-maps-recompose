@@ -28,13 +28,12 @@ export default class BasicMapExample extends Component {
   }
 
   addMore() {
-    this.setState({ data: sampleData.coolSpotsAndNeighborhoodTours})
-    // this.setState({ data: sampleData.listings.concat(sampleData.coolSpotsAndNeighborhoodTours)})
+    // this.setState({ data: sampleData.coolSpotsAndNeighborhoodTours})
+    this.setState({ data: sampleData.listings.concat(sampleData.coolSpotsAndNeighborhoodTours)})
   }
 
   render() {
     const { data } = this.state
-    console.log('BasicMapExample ', data.length)
     return (
       <div>
         <button style={styles.button} onClick={this.addMore.bind(this)}>Add More</button>
@@ -53,24 +52,3 @@ export default class BasicMapExample extends Component {
     )
   }
 }
-
-
-// export default () => {
-//
-//   return (
-//     <div>
-//       <button onClick={}>Add More</button>
-//       <GoogleMap
-//         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_KEY}`}
-//         options={mapOptions}>
-//         {data.map(listing => {
-//           return (
-//             <Marker
-//               key={listing.id}
-//               position={{lat: listing.latitude, lng: listing.longitude}} />
-//           )
-//         })}
-//       </GoogleMap>
-//     </div>
-//   )
-// }

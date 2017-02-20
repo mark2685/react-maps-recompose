@@ -29,9 +29,6 @@ const enhance = compose(
     domReady: props => node => {
       const map = new props.google.maps.Map(node, props.options)
 
-      console.log('Map.node', node)
-      console.log('Map.map', map)
-
       props.mapDomReady(map)
     }
   }),
