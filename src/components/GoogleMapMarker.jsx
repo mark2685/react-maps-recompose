@@ -15,6 +15,7 @@ const Marker = compose(
   getContext({
     google: PropTypes.object.isRequired,
     map: PropTypes.object.isRequired,
+    markerClusterer: PropTypes.object,
   }),
   lifecycle({
     componentDidMount: function() {
@@ -23,7 +24,14 @@ const Marker = compose(
       }
 
       // props
-      const { google, map, content, position, updateMarker } = this.props
+      const {
+        google,
+        map,
+        markerClusterer,
+        content,
+        position,
+        updateMarker
+      } = this.props
 
       // events
       const { onClick } = this.props
@@ -32,24 +40,32 @@ const Marker = compose(
 
       const marker = new google.maps.Marker(config)
 
-      updateMarker(() => {
-        return marker
-      })
+      if (markerClusterer) {
+        markerClusterer.addMarker(marker)
+      }
 
       if (onClick) {
         marker.addListener('click', (event) => onClick(event, marker, {
           content, position
         }))
       }
+
+      updateMarker(() => {
+        return marker
+      })
     },
     componentWillUnmount: function() {
       // props
-      const { marker, google } = this.props
+      const { marker, google, markerClusterer } = this.props
 
-      if (this.props.marker) {
+      if (marker) {
         google.maps.event.clearListeners(marker, 'click')
 
-        this.props.marker.setMap(null)
+        if (markerClusterer) {
+          markerClusterer.removeMarker(marker)
+        }
+
+        marker.setMap(null)
       }
     }
   }),

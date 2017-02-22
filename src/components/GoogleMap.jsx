@@ -12,6 +12,7 @@ import { default as GoogleScriptLoader } from './GoogleScriptLoader'
 
 export { default as Marker } from './GoogleMapMarker'
 export { default as InfoWindow } from './GoogleMapInfoWindow'
+export { default as MarkerClusterer } from './GoogleMapMarkerClusterer'
 
 const enhance = compose(
   withProps(

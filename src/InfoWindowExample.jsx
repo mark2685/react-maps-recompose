@@ -20,7 +20,7 @@ const styles = {
     zIndex: 999
   }
 }
-export default class BasicMapExample extends Component {
+export default class InfoWindowExample extends Component {
   state = {
     data: sampleData.listings
   }
@@ -38,14 +38,16 @@ export default class BasicMapExample extends Component {
         <GoogleMap
           googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_KEY}`}
           options={mapOptions}>
-            {data.map(listing => {
-              return (
-                  <Marker
-                    key={listing.id}
-                    content={`${listing.displayName}`}
-                    position={{lat: listing.latitude, lng: listing.longitude}} />
-              )
-            })}
+            <InfoWindow>
+              {data.map(listing => {
+                return (
+                    <Marker
+                      key={listing.id}
+                      content={`${listing.displayName}`}
+                      position={{lat: listing.latitude, lng: listing.longitude}} />
+                )
+              })}
+            </InfoWindow>
         </GoogleMap>
       </div>
     )

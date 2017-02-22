@@ -1,15 +1,22 @@
 # Rebuild of react-google-map
 
 ## TODO:
-* InfoWindow
+* Externalize Googles methods for:
+  * Map
+  * Marker
+  * InfoWindow
+* MarkerWithLabel
+* MarkerClusterer
 * Map Events
 * Marker Events
-* MarkerWithLabel
 * Custom Controls
+* Exmples
+  * React Router to navigate through the examples
+  * Github.io
 
 ## Component Structure
 * <GoogleMap />
- * isLoading
+ * isLoading ?
   * <LoadScripts />
   * <Map />
     * <MapDom /> // never updates after the initial map renders
