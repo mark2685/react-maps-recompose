@@ -6,10 +6,12 @@ import { default as withProps } from 'recompose/withProps'
 import { default as withHandlers } from 'recompose/withHandlers'
 import { default as branch } from 'recompose/branch'
 import { default as renderComponent } from 'recompose/renderComponent'
-import { omit } from 'lodash/fp'
+import { default as omit } from 'lodash/fp'
 import { default as GoogleMapDomReference } from './GoogleMapDomReference'
 import { default as GoogleScriptLoader } from './GoogleScriptLoader'
-export { default as Marker } from './Marker'
+
+export { default as Marker } from './GoogleMapMarker'
+export { default as InfoWindow } from './GoogleMapInfoWindow'
 
 const enhance = compose(
   withProps(
@@ -19,7 +21,7 @@ const enhance = compose(
   withState('map', 'updateMapObject', null),
   withHandlers({
     scriptLoaded: props => () => props.updateGoogleObject(g => window.google ? window.google : null),
-    mapDomReady: props => map => props.updateMapObject(map)
+    mapDomReady: props => map => props.updateMapObject(map),
   }),
   branch(
     props => !props.google,

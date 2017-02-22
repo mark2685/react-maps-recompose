@@ -1,11 +1,11 @@
 # Rebuild of react-google-map
 
 ## TODO:
+* InfoWindow
+* Map Events
+* Marker Events
 * MarkerWithLabel
 * Custom Controls
-* InfoWindow
-* Marker Events
-* Map Events
 
 ## Component Structure
 * <GoogleMap />

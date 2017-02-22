@@ -1,5 +1,5 @@
 import { default as React, Component } from 'react'
-import { default as GoogleMap, Marker } from './components/GoogleMap'
+import { default as GoogleMap, InfoWindow, Marker } from './components/GoogleMap'
 import {
   GOOGLE_MAP_KEY,
   DEFAULT_ZOOM,
@@ -40,13 +40,16 @@ export default class BasicMapExample extends Component {
         <GoogleMap
           googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_KEY}`}
           options={mapOptions}>
-          {data.map(listing => {
-            return (
-              <Marker
-                key={listing.id}
-                position={{lat: listing.latitude, lng: listing.longitude}} />
-            )
-          })}
+            <InfoWindow>
+              {data.map(listing => {
+                return (
+                    <Marker
+                      key={listing.id}
+                      content={`${listing.displayName}`}
+                      position={{lat: listing.latitude, lng: listing.longitude}} />
+                )
+              })}
+            </InfoWindow>
         </GoogleMap>
       </div>
     )
