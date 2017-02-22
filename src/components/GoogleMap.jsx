@@ -6,11 +6,13 @@ import { default as withProps } from 'recompose/withProps'
 import { default as withHandlers } from 'recompose/withHandlers'
 import { default as branch } from 'recompose/branch'
 import { default as renderComponent } from 'recompose/renderComponent'
+import { default as renderNothingButChildren } from '../utils/compose/renderNothingButChildren'
 import { default as omit } from 'lodash/fp'
 import { default as GoogleMapDomReference } from './GoogleMapDomReference'
 import { default as GoogleScriptLoader } from './GoogleScriptLoader'
 
 export { default as Marker } from './GoogleMapMarker'
+export { default as MarkerWithLabel } from './GoogleMapMarkerWithLabel'
 export { default as InfoWindow } from './GoogleMapInfoWindow'
 export { default as MarkerClusterer } from './GoogleMapMarkerClusterer'
 
@@ -41,7 +43,8 @@ const HOC = compose(
       map: props.map
     })
   ),
-)(({ children, google }) => (<div>{children}</div>))
+  renderNothingButChildren
+)()
 
 export default enhance(({ google, map, options, mapDomReady, children }) => {
   const renderChildren = google && map ? children : null

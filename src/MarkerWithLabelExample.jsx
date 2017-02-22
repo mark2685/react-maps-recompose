@@ -1,5 +1,5 @@
 import { default as React, Component } from 'react'
-import { default as GoogleMap, InfoWindow, MarkerClusterer, Marker } from './components/GoogleMap'
+import { default as GoogleMap, MarkerWithLabel } from './components/GoogleMap'
 import {
   GOOGLE_MAP_KEY,
   DEFAULT_ZOOM,
@@ -20,7 +20,7 @@ const styles = {
     zIndex: 999
   }
 }
-export default class MarkerClustererExample extends Component {
+export default class BasicMapExample extends Component {
   state = {
     data: sampleData.listings
   }
@@ -38,18 +38,14 @@ export default class MarkerClustererExample extends Component {
         <GoogleMap
           googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_KEY}`}
           options={mapOptions}>
-            <MarkerClusterer>
-              <InfoWindow>
-                {data.map(listing => {
-                  return (
-                    <Marker
-                      key={listing.id}
-                      content={`${listing.displayName}`}
-                      position={{lat: listing.latitude, lng: listing.longitude}} />
-                  )
-                })}
-              </InfoWindow>
-            </MarkerClusterer>
+            {data.map(listing => {
+              return (
+                  <MarkerWithLabel
+                    key={listing.id}
+                    labelContent={`${listing.displayName}`}
+                    position={{lat: listing.latitude, lng: listing.longitude}} />
+              )
+            })}
         </GoogleMap>
       </div>
     )

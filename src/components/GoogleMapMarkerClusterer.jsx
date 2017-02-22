@@ -3,6 +3,7 @@ import { default as compose } from 'recompose/compose'
 import { default as withContext } from 'recompose/withContext'
 import { default as getContext } from 'recompose/getContext'
 import { default as withState } from 'recompose/withState'
+import { default as renderNothingButChildren } from '../utils/compose/renderNothingButChildren'
 
 import { default as MarkerClustererPlus } from 'marker-clusterer-plus'
 
@@ -20,7 +21,8 @@ const HOC = compose(
     },
     (props) => ({ markerClusterer: props.markerClusterer, })
   ),
-)(({ children }) => (<div>{children}</div>))
+  renderNothingButChildren
+)()
 
 export default enhance(({ children, markerClusterer }) => {
   return (

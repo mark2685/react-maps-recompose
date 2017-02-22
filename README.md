@@ -6,13 +6,17 @@
   * Marker
   * InfoWindow
 * MarkerWithLabel
-* MarkerClusterer
 * Map Events
 * Marker Events
 * Custom Controls
 * Exmples
   * React Router to navigate through the examples
   * Github.io
+* Swap out Sample Data with better (not roofshoot specific) data.
+
+### Turn this into an NPM package
+* renderNothingButChildren (extend compose' `renderNothing` method so that it renders children)
+
 
 ## Component Structure
 * <GoogleMap />
