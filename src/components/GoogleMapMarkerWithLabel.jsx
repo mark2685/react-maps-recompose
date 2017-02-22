@@ -68,6 +68,7 @@ const MarkerWithLabel = compose(
       const { onClick } = this.props
 
       // MarkerWithLabel Config
+      // TODO: Filter out blank props
       const config = {
         map,
         crossImage,

@@ -1,18 +1,26 @@
 # Rebuild of react-google-map
 
+## Table of Contents
+- [TODO](#todo)
+- [Inspiration](#inspiration)
+- [Component Structure](#component-structure)
+- [Components](#components)
+
 ## TODO:
 * Externalize Googles methods for:
   * Map
   * Marker
   * InfoWindow
-* MarkerWithLabel
-* Map Events
-* Marker Events
-* Custom Controls
+  * Marker Clusterer
+  * Marker w/ Label
+* Externalize Googles events for:
+  * Events
+  * Events
 * Exmples
   * React Router to navigate through the examples
   * Github.io
 * Swap out Sample Data with better (not roofshoot specific) data.
+* Write Tests
 
 ### Turn this into an NPM package
 * renderNothingButChildren (extend compose' `renderNothing` method so that it renders children)
@@ -26,10 +34,34 @@
     * <MapDom /> // never updates after the initial map renders
     * <MapChildren />
 
+## Components
+
+### <GoogleMap />
+#### Props:
+* googleMapURL:
+* mapOptions: https://developers.google.com/maps/documentation/javascript/3.exp/reference#MapOptions
+
+### <Marker />
+#### Props:
+
+### <MarkerWithLabel />
+#### Props:
+
+### <InfoWindow />
+#### Props:
+
+### <MarkerClusterer />
+#### Props:
+
 ## Inspiration
 * [google-maps-react (simplest solution)](https://github.com/fullstackreact/google-maps-react)
 * [react-google-maps (complex solution)](https://github.com/tomchentw/react-google-maps)
 * [google-map-react](https://github.com/istarkov/google-map-react)
+
+
+
+
+## Default create-react-app documentation:
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 

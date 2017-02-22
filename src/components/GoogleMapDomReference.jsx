@@ -4,9 +4,7 @@ import { default as withProps } from 'recompose/withProps'
 import { default as onlyUpdateForKeys } from 'recompose/onlyUpdateForKeys'
 import { default as toClass } from 'recompose/toClass'
 import { default as withHandlers } from 'recompose/withHandlers'
-
 import { omit } from 'lodash/fp'
-
 
 const styles = {
   container: {
@@ -24,15 +22,15 @@ const styles = {
 }
 
 const enhance = compose(
-  withProps(props => omit(props, ['google'])),
+  withProps(props => omit(props, ['google', 'mapOptions'])),
   withHandlers({
-    domReady: props => node => {
-      const map = new props.google.maps.Map(node, props.options)
+    domReady: ({ google, mapOptions, mapDomReady }) => node => {
+      const map = new google.maps.Map(node, mapOptions)
 
-      props.mapDomReady(map)
+      mapDomReady(map)
     }
   }),
-  onlyUpdateForKeys(['google']),
+  onlyUpdateForKeys(['google', 'mapOptions']),
   toClass // needed for `ref`
 )
 

@@ -18,7 +18,7 @@ export { default as MarkerClusterer } from './GoogleMapMarkerClusterer'
 
 const enhance = compose(
   withProps(
-    props => omit(props, ['googleMapURL', 'options'])
+    props => omit(props, ['googleMapURL', 'mapOptions'])
   ),
   withState('google', 'updateGoogleObject', null),
   withState('map', 'updateMapObject', null),
@@ -46,12 +46,12 @@ const HOC = compose(
   renderNothingButChildren
 )()
 
-export default enhance(({ google, map, options, mapDomReady, children }) => {
+export default enhance(({ google, map, mapOptions, mapDomReady, children }) => {
   const renderChildren = google && map ? children : null
 
   return (
     <HOC google={google} map={map}>
-      <GoogleMapDomReference google={google} options={options} mapDomReady={mapDomReady} />
+      <GoogleMapDomReference google={google} mapOptions={mapOptions} mapDomReady={mapDomReady} />
       {renderChildren}
     </HOC>
   )

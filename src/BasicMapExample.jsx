@@ -37,7 +37,7 @@ export default class BasicMapExample extends Component {
         <button style={styles.button} onClick={this.addMore.bind(this)}>Add More</button>
         <GoogleMap
           googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_KEY}`}
-          options={mapOptions}>
+          mapOptions={mapOptions}>
             {data.map(listing => {
               return (
                   <Marker
