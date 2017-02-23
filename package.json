@@ -9,7 +9,6 @@
     "lodash": "^4.17.4",
     "marker-clusterer-plus": "^2.1.4",
     "markerwithlabel": "^2.0.0",
-    "pubsub-js": "^1.5.4",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-icons": "^2.2.3",
