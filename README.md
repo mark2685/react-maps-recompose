@@ -22,9 +22,7 @@ A Google Maps library built in React, utilizing recompose.
 	* Upload to Github.io
 * Swap out Sample Data with better (not roofshoot specific) data.
 * Write Tests
-
-### Turn this into an NPM package
-* renderNothingButChildren (extend compose' `renderNothing` method so that it renders children)
+* Extract `renderNothingButChildren()` to its own NPM package. A higher-order component that only renders children.
 
 ## Components
 
