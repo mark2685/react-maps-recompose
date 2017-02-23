@@ -1,8 +1,11 @@
-# Rebuild of react-google-map
+# react-maps-recompose
+
+## Description
+A Google Maps library built in React, utilizing recompose.
 
 ## Table of Contents
-- [Roadmap](#roadmap)
 - [Inspiration](#inspiration)
+- [Roadmap](#roadmap)
 - [Component Structure](#component-structure)
 - [Components](#components)
 
@@ -50,4 +53,3 @@
 
 ### `<MarkerClusterer />`
 #### Props:
-
